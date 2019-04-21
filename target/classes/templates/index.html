@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/layout :: head" lang="en">
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+        <meta charset="UTF-8" />
+        <title>Naamakirja</title>
+    </head>
+    
+    <body>
+        <nav th:replace="fragments/layout :: navbar"></nav>
+        
+        <div th:unless="@{!isLoggedIn}" class="container mt-4">
+            <img style="position:relative;width:100%;" src="https://www.slurp-ramen.com/wp-content/uploads/2017/06/hello.png" alt="welcome" />
+            <p class="mt-4 text-center display-4">Let's head to your <a href="/profile" style="color: #78a0a3;">profile</a> and start connecting!</p>
+        </div>  
+        
+        
+        <div th:if="${! isLoggedIn}">
+            <div class="jumbotron text-center">
+                <h1>Hey you, let's get you started! </h1>
+
+                <div class="row justify-content-center">
+                    <form th:action="@{/login}" method="GET">
+                        <span>Already a member? </span>
+                        <button id="signinbutton" type="submit" class="btn btn-dark">Sign in!</button>
+                    </form> 
+                </div>
+            </div>
+
+            <section class="container col-6">
+                <h2 class="text-center">Let's sign you up!</h2>
+                <form action="#" th:action="@{/signup}" th:object="${user}" method="POST">
+
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" name="username" aria-describedby="usernameHelp" placeholder="Enter username"/>
+                        <small id="usernameHelp" class="form-text text-muted">4-15 marks, used for logging in</small>
+    <!--                    <section th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger">Virheviesti</section>-->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="realname">Real name</label>
+                        <input type="text" class="form-control" name="realname" placeholder="Real name"/>
+                        <small id="usernameHelp" class="form-text text-muted">4-30 marks</small>
+    <!--                    <section th:if="${#fields.hasErrors('realname')}" th:errors="*{realname}" class="text-danger">Virheviesti</section>-->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profilename">Profile name</label>
+                        <input type="text" class="form-control" name="profilename" placeholder="Profile name"/>
+                        <small id="usernameHelp" class="form-text text-muted">If you want, you can use your username as your profilename. (4-15 marks)</small>
+    <!--                    <section th:if="${#fields.hasErrors('profilename')}" th:errors="*{profilename}" class="text-danger">Virheviesti</section>-->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password"/>
+    <!--                    <section th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Virheviesti</section>-->
+                    </div>
+
+                    <button type="submit" class="btn btn-dark">Sign up!</button>
+                </form>
+
+            </section>    
+        </div>
+
+    </body>
+</html>
