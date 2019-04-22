@@ -146,7 +146,8 @@ public class ProfilePageController {
     public ResponseEntity<byte[]> viewPhoto(@PathVariable Long id, @PathVariable String profilename) {
         Photo esim = userSer.getOnePhotoById(id);        
         final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("image/jpeg"));
+        headers.setContentType(MediaType.parseMediaType(esim.getContentType()));
+        headers.add("Content-Disposition", "attachment; filename=" + esim.getDescription());
         return new ResponseEntity<>(esim.getContent(), headers, HttpStatus.CREATED);
     }
 }
