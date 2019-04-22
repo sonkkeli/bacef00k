@@ -74,6 +74,7 @@ public class UserService {
                 p.setContent(file.getBytes());
                 p.setOwner(userRepo.findByProfilename(profilename));
                 p.setDescription(description);
+                p.setContentType(file.getContentType());
                 photoRepo.save(p);
             } catch (IOException ex) {
                 Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
