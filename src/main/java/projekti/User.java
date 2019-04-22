@@ -1,9 +1,7 @@
 package projekti;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Table;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -14,6 +12,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  */
 
 @Entity
+@Table(name = "Profile")
 @Data @AllArgsConstructor @NoArgsConstructor
 public class User extends AbstractPersistable<Long>{
     
