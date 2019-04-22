@@ -3,6 +3,7 @@ package projekti;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import org.hibernate.annotations.Type;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -27,9 +28,10 @@ public class Photo extends AbstractPersistable<Long>{
     @NotEmpty
     private String description;
     
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @NotEmpty
+ //   @Lob
+ //   @Basic(fetch = FetchType.LAZY)
+ //   @NotEmpty 
+    @Type(type = "org.hibernate.type.BinaryType")
     private byte[] content;
     
     @OneToOne
