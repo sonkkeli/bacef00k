@@ -107,7 +107,7 @@
                     </div>
                 </div>
                 <!-- kuvan lisääminen -->
-                <div th:if="${isMyProfile and ${photos.size()<10}">                    
+                <div th:if="${isMyProfile} and ${photos.size()<10}">                    
                     <p class="lead" >Add more photos:</p>
                     <form  th:action="@{'/profile/' + ${user.profilename} + '/addphoto'}" method="POST" enctype="multipart/form-data">
                         <div class="mt-2 form-group">
