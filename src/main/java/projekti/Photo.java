@@ -1,6 +1,7 @@
 package projekti;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.persistence.Basic;
 import org.hibernate.annotations.Type;
@@ -46,4 +47,9 @@ public class Photo extends AbstractPersistable<Long>{
     private List<String> likers = new ArrayList<>();
 
     private String contentType;
+    
+    public void removeOldestComment(){
+        Collections.sort(comments);
+        comments.remove(comments.size()-1);
+    }
 }
