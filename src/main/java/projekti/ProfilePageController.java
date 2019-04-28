@@ -129,7 +129,7 @@ public class ProfilePageController {
     public String uploadPhoto(@RequestParam("photo") MultipartFile file, 
             @PathVariable String profilename, @RequestParam String description) {
         
-        if (file != null && description != null) {
+        if (file != null) {
             userSer.addPhoto(file, profilename, description);
         }
         
