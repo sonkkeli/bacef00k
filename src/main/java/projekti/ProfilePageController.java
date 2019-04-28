@@ -101,7 +101,7 @@ public class ProfilePageController {
         userRepo.save(user);
         model.addAttribute(user);
         model.addAttribute("isLoggedIn", false);
-        return "index";
+        return "redirect:/login";
     }
     
     @GetMapping("/profile")
