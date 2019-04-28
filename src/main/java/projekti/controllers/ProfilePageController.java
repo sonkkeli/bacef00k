@@ -47,6 +47,13 @@ public class ProfilePageController {
     @Autowired
     PasswordEncoder passwordEncoder;
     
+    /*
+    *
+    *    ---- EVERYTHING RELATED TO PROFILE AND SIGN UP BELOW ----
+    *
+    */
+    
+    // ------ VIEW PROFILE ------ // 
     @GetMapping("/profile/{profilename}")
     public String view(Model model, @PathVariable String profilename) {
         User u = userRepo.findByProfilename(profilename);
@@ -69,32 +76,16 @@ public class ProfilePageController {
         model.addAttribute("posts", postSer.getPostsByProfile(u));
         model.addAttribute("photos", userSer.getPhotos(u));
         return "profile";
+    }    
+    
+    // ------ REDIRECT FROM PROFILE TO USER'S OWN PROFILE ------ // 
+    @GetMapping("/profile")
+    public String viewMyPage(Model model) {
+        User loggedUser = userSer.loggedInUser();
+        return "redirect:/profile/" + loggedUser.getProfilename();
     }
     
-    @PostMapping("/profile/{profilename}/addfriend")
-    public String addFriend(@PathVariable String profilename) {
-        userSer.addFriend(profilename);        
-        return "redirect:/profile/" +profilename;
-    }
-
-    @PostMapping("/profile/{profilename}/photos/{id}/changeprofile")
-    public String changeProfilePicture(@PathVariable String profilename, @PathVariable Long id) {
-        userSer.handleProfilePicChange(profilename, id);
-        return "redirect:/profile/" +profilename;
-    }
-    
-    @PostMapping("/friends/ignore/{senderName}")
-    public String ignoreFriendrequest(@PathVariable String senderName){
-        userSer.ignoreFriendrequest(senderName);
-        return "redirect:/friends";
-    }
-    
-    @PostMapping("/friends/accept/{senderName}")
-    public String acceptFriendrequest(@PathVariable String senderName){
-        userSer.acceptFriendrequest(senderName);
-        return "redirect:/friends";
-    }
-    
+    // ------ SIGN UP AND CHECKING ERRORS ------ // 
     @PostMapping("/signup")
     public String signup(@Valid @ModelAttribute User user, BindingResult br, Model model) {
         
@@ -123,14 +114,36 @@ public class ProfilePageController {
         model.addAttribute("uniqueUsername", true);
         model.addAttribute("uniqueProfilename", true);
         return "redirect:/login";
+    }    
+    
+    /*
+    *
+    *    ---- EVERYTHING RELATED TO FRIENDS BELOW ----
+    *
+    */
+    
+    // ------ SEND FRIEND REQUEST ------ // 
+    @PostMapping("/profile/{profilename}/addfriend")
+    public String addFriend(@PathVariable String profilename) {
+        userSer.addFriend(profilename);        
+        return "redirect:/profile/" +profilename;
     }
     
-    @GetMapping("/profile")
-    public String viewMyPage(Model model) {
-        User loggedUser = userSer.loggedInUser();
-        return "redirect:/profile/" + loggedUser.getProfilename();
+    // ------ DECLINE FRIEND REQUEST ------ // 
+    @PostMapping("/friends/ignore/{senderName}")
+    public String ignoreFriendrequest(@PathVariable String senderName){
+        userSer.ignoreFriendrequest(senderName);
+        return "redirect:/friends";
     }
     
+    // ------ ACCEPT FRIEND REQUEST ------ // 
+    @PostMapping("/friends/accept/{senderName}")
+    public String acceptFriendrequest(@PathVariable String senderName){
+        userSer.acceptFriendrequest(senderName);
+        return "redirect:/friends";
+    }
+    
+    // ------ FRIENDS & REQUESTS ------ // 
     @GetMapping("/friends")
     public String showFriendsAndRequests(Model model) {
         model.addAttribute("friends", userSer.getAllFriends());
@@ -139,14 +152,22 @@ public class ProfilePageController {
         return "friends";
     }
     
+    // ------ FIND FRIENDS ------ // 
     @PostMapping("/finder")
     public String findFriends(@RequestParam String keyword, Model model){
         model.addAttribute("friends", userSer.getAllFriends());
         model.addAttribute("friendrequests", userSer.getAllFriendRequests());
         model.addAttribute("allUsers", userSer.notYetFriendsMatchingKeyword(keyword));
         return "friends";
-    }
+    }    
     
+    /*
+    *
+    *    ---- EVERYTHING RELATED TO PHOTOS BELOW ----
+    *
+    */
+    
+    // ------ ADD PHOTO ------ // 
     @PostMapping("/profile/{profilename}/addphoto")
     public String uploadPhoto(@RequestParam("photo") MultipartFile file, 
             @PathVariable String profilename, @RequestParam String description) {
@@ -158,12 +179,14 @@ public class ProfilePageController {
         return "redirect:/profile/" +profilename;
     }
     
+    // ------ DELETE PHOTO ------ // 
     @DeleteMapping("/profile/{profilename}/photos/{id}")
     public String delete(@PathVariable(value="id") Long id, @PathVariable String profilename){
         userSer.deletePhoto(id);
         return "redirect:/profile/" +profilename;
     }
     
+    // ------ VIEW PHOTO ------ // 
     @GetMapping("/profile/{profilename}/photos/{id}")
     public ResponseEntity<byte[]> viewPhoto(@PathVariable Long id, @PathVariable String profilename) {
         Photo esim = userSer.getOnePhotoById(id);        
@@ -171,5 +194,12 @@ public class ProfilePageController {
         headers.setContentType(MediaType.parseMediaType(esim.getContentType()));
         headers.add("Content-Disposition", "attachment; filename=" + esim.getDescription());
         return new ResponseEntity<>(esim.getContent(), headers, HttpStatus.CREATED);
+    }    
+    
+    // ------ CHANGE PROFILE PIC ------ // 
+    @PostMapping("/profile/{profilename}/photos/{id}/changeprofile")
+    public String changeProfilePicture(@PathVariable String profilename, @PathVariable Long id) {
+        userSer.handleProfilePicChange(profilename, id);
+        return "redirect:/profile/" +profilename;
     }
 }
