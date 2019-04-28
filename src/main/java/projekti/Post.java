@@ -39,7 +39,10 @@ public class Post extends AbstractPersistable<Long> implements Comparable<Post> 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
     
-    
+    public void removeOldestComment(){
+        Collections.sort(comments);
+        comments.remove(comments.size()-1);
+    }
     
     @Override
     public int compareTo(Post o) {
