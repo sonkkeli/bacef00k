@@ -10,7 +10,7 @@
         <div class="mt-4 container">
             
             <div class="row shadow p-3 mb-5 bg-white rounded">
-                <img th:if="${!hasProfilePicture}" src="https://iconfree.net/uploads/icon/2015/8/25/creature-terror-monsters-icon-6265-512x512.png" alt="profilepic" height="200" id="profilepicdefault"/>
+                <img th:if="${!hasProfilePicture}" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c2319d31-56ec-4f80-b9a7-58156da9925a/dd5nuna-6b0b3dfb-cfbe-4369-afc1-ec45a1dca968.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2MyMzE5ZDMxLTU2ZWMtNGY4MC1iOWE3LTU4MTU2ZGE5OTI1YVwvZGQ1bnVuYS02YjBiM2RmYi1jZmJlLTQzNjktYWZjMS1lYzQ1YTFkY2E5NjgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.TYqU9gygAgMgfZG79_rO1hFNCIo-1W0cxAYXfPnsucQ" alt="profilepic" height="200" id="profilepicdefault"/>
                 <img th:if="${hasProfilePicture}" th:src="@{'/profile/' + ${user.profilename} + '/photos/' + ${profilepicid}}" th:alt="profilepic" height="200" id="profilepic"/>
                 <table class="ml-4 mt-2 col-8">                    
                     <tr >
