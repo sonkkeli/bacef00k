@@ -26,7 +26,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Photo extends AbstractPersistable<Long>{
     
-    @NotEmpty
+    // @NotEmpty
     private String description;
     
  //   @Lob
