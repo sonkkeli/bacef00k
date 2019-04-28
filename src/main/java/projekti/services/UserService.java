@@ -51,6 +51,7 @@ public class UserService {
         return allUsers;
     }
     
+    // ------ FILTERING FOR SEARCHING FRIENDS ------ // 
     public List<User> notYetFriendsMatchingKeyword(String keyword){
         List<User> usersNotMyFriends = new ArrayList<>();
         for (User u : listAllUsers()){
@@ -65,6 +66,7 @@ public class UserService {
         return usersNotMyFriends;
     }
     
+    // ------ ADDING PHOTO ------ // 
     public void addPhoto(MultipartFile file, String profilename, String description){
         System.out.println(file.getSize());
         System.out.println(file.getContentType());
@@ -88,12 +90,14 @@ public class UserService {
         }
     }
     
+    // ------ FINDING OUT DETAILS OF LOGGED IN USER ------ // 
     public User loggedInUser(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User u = userRepo.findByUsername(auth.getName());
         return u;
     }
     
+    // ------ CREATING A FRIENDSHIP (A FRIEND REQUEST, WHICH NEEDS TO BE ACCEPTED OR DECLINED) ------ // 
     public void addFriend(String profilename){
         Friendship friendship = new Friendship();
         friendship.setTimeSent(new Date());
@@ -102,17 +106,20 @@ public class UserService {
         friendRepo.save(friendship);
     }
     
+    // ------ DECLINING FRIEND REQUEST ------ // 
     public void ignoreFriendrequest(String senderName){
         Friendship f = friendRepo.findBySenderAndReceiver(userRepo.findByProfilename(senderName), loggedInUser());
         friendRepo.delete(f);
     }
     
+    // ------ ACCEPTING FRIEND REQUEST ------ // 
     public void acceptFriendrequest(String senderName){
         Friendship f = friendRepo.findBySenderAndReceiver(userRepo.findByProfilename(senderName), loggedInUser());
         f.setAccepted(true);
         friendRepo.save(f);
     }
     
+    // ------ LISTING FRIENDS ------ // 
     public List<User> getAllFriends(){
         List<User> friends = new ArrayList<>();
         
@@ -129,6 +136,7 @@ public class UserService {
         return friends;
     }
     
+    // ------ CHANGING PROFILE PICTURE ------ // 
     public void handleProfilePicChange(String profilename, Long id){
         User u = loggedInUser();
         Photo p = photoRepo.getOne(id);
@@ -139,6 +147,7 @@ public class UserService {
         photoRepo.save(p);
     }
     
+    // ------ HAS PROFILE PIC OR NOT ? ------ // 
     public boolean hasProfilePicture(User u){
         boolean hasProfilePicture = false;
         for (Photo p : photoRepo.findByOwner(u)){
@@ -149,6 +158,7 @@ public class UserService {
         return hasProfilePicture;
     }
     
+    // ------ ID OF CURRENT PROFILE PIC ------ // 
     public Long findIdOfCurrentProfilePicture(User u){
         Long id = -1L;
         for (Photo p : photoRepo.findByOwner(u)){
@@ -160,6 +170,7 @@ public class UserService {
         return id;
     }
     
+    // ------ LISTING FRIENDS WITH NOT YET ACCEPTED STAGE ------ // 
     public List<Friendship> getAllFriendRequests(){
 
         List<Friendship> friendrequests = new ArrayList<>();
@@ -172,6 +183,7 @@ public class UserService {
         return friendrequests;
     }
     
+    // ------ UNIQUE USERNAME ------ // 
     public boolean checkUniqueUsername(User u){
         boolean unique = true;
         if ( userRepo.findByUsername(u.getUsername()) != null ){
@@ -180,6 +192,7 @@ public class UserService {
         return unique;
     }
     
+    // ------ UNIQUE PROFILENAME ------ // 
     public boolean checkUniqueProfilename(User u){
         boolean unique = true;
         if ( userRepo.findByProfilename(u.getProfilename()) != null ){

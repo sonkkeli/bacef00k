@@ -24,6 +24,7 @@ public class DefaultController {
     @Autowired
     PasswordEncoder passwordEncoder;
     
+    // ------ CREATING TEST USER ------ // 
     @PostConstruct
     public void init() {
         User testUser = new User();
@@ -43,6 +44,7 @@ public class DefaultController {
         return new User();
     }
 
+    // ------ LANDING PAGE ------ // 
     @GetMapping("*")
     public String landingPage(Model model) {
         boolean isLoggedIn = false;

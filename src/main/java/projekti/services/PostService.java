@@ -29,6 +29,7 @@ public class PostService {
     @Autowired
     private PostRepository postRepo;
     
+    // ------ ADDING POST ------ // 
     public void handlePosting(String postcontent, String profilename){
         User loggedUser = userSer.loggedInUser();
         Post p = new Post();
@@ -40,6 +41,7 @@ public class PostService {
         System.out.println(p);
     }
     
+    // ------ POST BY PROFILE ------ // 
     public List<Post> getPostsByProfile(User u){
         List<Post> posts = postRepo.findByToWhomPosted(u);
         Collections.sort(posts);
@@ -52,6 +54,7 @@ public class PostService {
         return posts;
     }
     
+    // ------ POSTS TO THE FEED ------ // 
     public List<Post> getAllPostsOfMeAndMyFriends(){
         User loggedUser = userSer.loggedInUser();
         List<Post> posts = postRepo.findByToWhomPosted(loggedUser);
