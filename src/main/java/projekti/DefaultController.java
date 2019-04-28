@@ -33,6 +33,11 @@ public class DefaultController {
             userRepo.save(testUser);
         }
     }  
+    
+    @ModelAttribute
+    private User getUser() {
+        return new User();
+    }
 
     @GetMapping("*")
     public String landingPage(Model model) {
