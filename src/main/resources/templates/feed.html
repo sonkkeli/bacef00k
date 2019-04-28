@@ -32,7 +32,7 @@
                     <div th:each="comment : ${post.comments}">
                         <span class="ml-2 lead" th:text="${comment.commentingTime} + ' - ' + ${comment.whoCommented.username} + ': ' + ${comment.content}"></span>
                     </div>
-                    <form th:action="@{'/profile/' + ${post.whoPosted.profilename}}" method="GET" class="row justify-content-end mr-4">
+                    <form th:action="@{'/profile/' + ${post.toWhomPosted.profilename}}" method="GET" class="row justify-content-end mr-4">
                         <button type="submit" class="btn btn-dark">1-2-3 feeling social!</button>
                     </form> 
                 </div>
