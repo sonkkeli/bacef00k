@@ -33,29 +33,29 @@
 
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" name="username" aria-describedby="usernameHelp" placeholder="Enter username"/>
+                        <input type="text" class="form-control" name="username" th:field="*{username}" aria-describedby="usernameHelp" placeholder="Enter username"/>
                         <small id="usernameHelp" class="form-text text-muted">4-15 marks, used for logging in</small>
-    <!--                    <section th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger">Virheviesti</section>-->
+                        <section th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger">Virheviesti</section>
                     </div>
 
                     <div class="form-group">
                         <label for="realname">Real name</label>
-                        <input type="text" class="form-control" name="realname" placeholder="Real name"/>
+                        <input type="text" class="form-control" name="realname" th:field="*{realname}" placeholder="Real name"/>
                         <small id="usernameHelp" class="form-text text-muted">4-30 marks</small>
-    <!--                    <section th:if="${#fields.hasErrors('realname')}" th:errors="*{realname}" class="text-danger">Virheviesti</section>-->
+                        <section th:if="${#fields.hasErrors('realname')}" th:errors="*{realname}" class="text-danger">Virheviesti</section>
                     </div>
 
                     <div class="form-group">
                         <label for="profilename">Profile name</label>
-                        <input type="text" class="form-control" name="profilename" placeholder="Profile name"/>
+                        <input type="text" class="form-control" name="profilename" th:field="*{profilename}" placeholder="Profile name"/>
                         <small id="usernameHelp" class="form-text text-muted">If you want, you can use your username as your profilename. (4-15 marks)</small>
-    <!--                    <section th:if="${#fields.hasErrors('profilename')}" th:errors="*{profilename}" class="text-danger">Virheviesti</section>-->
+                        <section th:if="${#fields.hasErrors('profilename')}" th:errors="*{profilename}" class="text-danger">Virheviesti</section>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password"/>
-    <!--                    <section th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Virheviesti</section>-->
+                        <input type="password" class="form-control" name="password" th:field="*{password}" placeholder="Password"/>
+                        <section th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Virheviesti</section>
                     </div>
 
                     <button type="submit" class="btn btn-dark">Sign up!</button>
