@@ -61,6 +61,9 @@ public class ReactionsService {
         c.setWhoCommented(userSer.loggedInUser());
         commentRepo.save(c);
         Photo p = photoRepo.getOne(id);
+        if (p.getComments().size() >= 10){
+            p.removeOldestComment();
+        }
         p.getComments().add(c);
         photoRepo.save(p);
     }
