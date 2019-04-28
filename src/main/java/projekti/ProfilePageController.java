@@ -91,16 +91,31 @@ public class ProfilePageController {
     
     @PostMapping("/signup")
     public String signup(@Valid @ModelAttribute User user, BindingResult br, Model model) {
+        
         if(br.hasErrors()) {
             System.out.println(br);
             model.addAttribute("isLoggedIn", false);
+            model.addAttribute("uniqueUsername", true);
+            model.addAttribute("uniqueProfilename", true);
             return "index";
-        }        
+        }
+        
+        if ( (!userSer.checkUniqueUsername(user)) || (!userSer.checkUniqueProfilename(user)) ){
+            System.out.println( "not unique" );
+            model.addAttribute( "isLoggedIn", false );
+            model.addAttribute( "uniqueUsername", userSer.checkUniqueUsername(user) );
+            model.addAttribute( "uniqueProfilename", userSer.checkUniqueProfilename(user) );
+            return "index";
+        }
+        
         String pw = user.getPassword();
         user.setPassword(passwordEncoder.encode(pw));
         userRepo.save(user);
+        System.out.println(user + " lisätty");
         model.addAttribute(user);
-        model.addAttribute("isLoggedIn", false);
+        model.addAttribute("isLoggedIn", false);        
+        model.addAttribute("uniqueUsername", true);
+        model.addAttribute("uniqueProfilename", true);
         return "redirect:/login";
     }
     
