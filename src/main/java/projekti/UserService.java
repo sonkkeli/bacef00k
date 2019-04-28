@@ -165,4 +165,20 @@ public class UserService {
         }
         return friendrequests;
     }
+    
+    public boolean checkUniqueUsername(User u){
+        boolean unique = true;
+        if ( userRepo.findByUsername(u.getUsername()) != null ){
+            unique = false;
+        }
+        return unique;
+    }
+    
+    public boolean checkUniqueProfilename(User u){
+        boolean unique = true;
+        if ( userRepo.findByProfilename(u.getProfilename()) != null ){
+            unique = false;
+        }
+        return unique;
+    }
 }
