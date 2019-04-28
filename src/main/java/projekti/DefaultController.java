@@ -46,6 +46,8 @@ public class DefaultController {
             isLoggedIn = true;
         }
         model.addAttribute("isLoggedIn", isLoggedIn);
+        model.addAttribute("uniqueUsername", true);
+        model.addAttribute("uniqueProfilename", true);
         return "index";
     }
 }
