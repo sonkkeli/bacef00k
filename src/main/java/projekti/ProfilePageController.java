@@ -93,6 +93,7 @@ public class ProfilePageController {
     public String signup(@Valid @ModelAttribute User user, BindingResult br, Model model) {
         if(br.hasErrors()) {
             System.out.println(br);
+            model.addAttribute("isLoggedIn", false);
             return "index";
         }        
         String pw = user.getPassword();
