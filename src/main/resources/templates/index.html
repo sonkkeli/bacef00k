@@ -36,6 +36,7 @@
                         <input type="text" class="form-control" name="username" th:field="*{username}" aria-describedby="usernameHelp" placeholder="Enter username"/>
                         <small id="usernameHelp" class="form-text text-muted">4-15 marks, used for logging in</small>
                         <section th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger">Virheviesti</section>
+                        <section th:if="${! uniqueUsername}" class="text-danger">This username has already been taken</section>
                     </div>
 
                     <div class="form-group">
@@ -50,6 +51,7 @@
                         <input type="text" class="form-control" name="profilename" th:field="*{profilename}" placeholder="Profile name"/>
                         <small id="usernameHelp" class="form-text text-muted">If you want, you can use your username as your profilename. (4-15 marks)</small>
                         <section th:if="${#fields.hasErrors('profilename')}" th:errors="*{profilename}" class="text-danger">Virheviesti</section>
+                        <section th:if="${! uniqueProfilename}" class="text-danger">This profile name has already been taken</section>
                     </div>
 
                     <div class="form-group">
