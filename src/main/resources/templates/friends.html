@@ -11,15 +11,7 @@
         <nav th:replace="fragments/layout :: navbar"></nav>
         
         <div class="container mt-4">
-            <div>            
-                <form  th:action="@{/finder}" method="POST">
-                    <div class="form-group row">
-                        <input type="text" name="keyword" class="form-control col-10" placeholder="Lacking friendliness? Feel free to surf for more"/>
-                        <button type="submit" class="btn btn-dark col-2">Find new friends</button>
-                    </div>
-                </form>            
-            </div>
-
+            
             <div class="text-center">
                 <div th:if="${!friendrequests.empty}">
                     <h3 class="mt-4 display-4">Pending friend requests</h3>
@@ -48,11 +40,24 @@
                 
                 <div>
                     <h3 class="mt-4 display-4">Possible future friends</h3>
+                    
+                    <div th:if="${!allUsers.empty}">            
+                        <form  th:action="@{/finder}" method="POST">
+                            <div class="form-group row">
+                                <input type="text" name="keyword" class="form-control col-10" placeholder="Lacking friendliness? Feel free to surf for more"/>
+                                <button type="submit" class="btn btn-dark col-2">Search</button>
+                            </div>
+                        </form>            
+                    </div>
+                    
                     <div th:each="res : ${allUsers}" class="row mt-4 justify-content-center">
                         <span th:text="${res.realname}" class="font-weight-light align-self-center mr-2">Nimi</span>
                         <form th:action="@{'/profile/' + ${res.profilename}}" method="GET" class="mt-2">
                             <button type="submit" class="btn btn-dark">Show profile</button>
                         </form>
+                    </div>
+                    <div th:if="${allUsers.empty}">
+                        <span class="font-weight-light align-self-center mr-2">No results!</span>
                     </div>
                 </div>
                 
