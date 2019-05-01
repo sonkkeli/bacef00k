@@ -2,36 +2,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="fragments/layout :: head" lang="en">
         <meta charset="UTF-8" />
-        <title>Naamakirja</title>
+        <title>bacef00k</title>
     </head>
     <body>
         <nav th:replace="fragments/layout :: navbar"></nav>
         
-        <div class="mt-4 container">
-            
-            <div class="row shadow p-3 mb-5 bg-white rounded">
-                <img th:if="${!hasProfilePicture}" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c2319d31-56ec-4f80-b9a7-58156da9925a/dd5nvru-f90692ea-3167-44f1-a23f-1b9454b86579.png/v1/fill/w_1280,h_1274,strp/bacef00k_userdefaultpic_by_soliquid_dd5nvru-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI3NCIsInBhdGgiOiJcL2ZcL2MyMzE5ZDMxLTU2ZWMtNGY4MC1iOWE3LTU4MTU2ZGE5OTI1YVwvZGQ1bnZydS1mOTA2OTJlYS0zMTY3LTQ0ZjEtYTIzZi0xYjk0NTRiODY1NzkucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.FNpq3iZOK2zJE0FOQjX9SZmmTdloWbFUXewFkBl0dOA" alt="profilepic" height="200" id="profilepicdefault"/>
-                <img th:if="${hasProfilePicture}" th:src="@{'/profile/' + ${user.profilename} + '/photos/' + ${profilepicid}}" th:alt="profilepic" height="200" id="profilepic"/>
-                <table class="ml-4 mt-2 col-8">                    
-                    <tr >
-                        <th><h3 class="display-4" th:text="${user.username}">@Käyttäjänimi</h3></th>
-                    </tr>
-                    <tr>
-                        <th><h5 class="lead" th:text="${user.realname}">Nimi</h5></th>
-                    </tr>                    
-                </table>
-                <div th:unless="${isFriend}">
-                    <form th:unless="${isMyProfile}" th:action="@{'/profile/' + ${user.profilename} + '/addfriend'}" method="POST" class="mt-2">
-                        <button type="submit" class="btn btn-dark">Add as a friend</button>
-                    </form>
+        <div class="jumbotron" style="background-image: url(https://i.imgur.com/LmapHcT.png); background-size: cover;">
+            <div class="container shadow p-3 mb-5 bg-white rounded">
+                <div class="row">
+                    <div class="ml-4 mt-2 mb-2">
+                        <img th:if="${!hasProfilePicture}" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c2319d31-56ec-4f80-b9a7-58156da9925a/dd5nvru-f90692ea-3167-44f1-a23f-1b9454b86579.png/v1/fill/w_1280,h_1274,strp/bacef00k_userdefaultpic_by_soliquid_dd5nvru-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI3NCIsInBhdGgiOiJcL2ZcL2MyMzE5ZDMxLTU2ZWMtNGY4MC1iOWE3LTU4MTU2ZGE5OTI1YVwvZGQ1bnZydS1mOTA2OTJlYS0zMTY3LTQ0ZjEtYTIzZi0xYjk0NTRiODY1NzkucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.FNpq3iZOK2zJE0FOQjX9SZmmTdloWbFUXewFkBl0dOA" alt="profilepic" height="300" id="profilepicdefault"/>
+                        <img th:if="${hasProfilePicture}" th:src="@{'/profile/' + ${user.profilename} + '/photos/' + ${profilepicid}}" th:alt="profilepic" height="300" id="profilepic"/>
+                    </div>
+                    <div >
+                        <table class="ml-4 mt-2">                    
+                            <tr >
+                                <th><h3 class="display-4" th:text="'@' + ${user.username}">@Käyttäjänimi</h3></th>
+                            </tr>
+                            <tr>
+                                <th><h5 class="lead" th:text="${user.realname}">Nimi</h5></th>
+                            </tr>                    
+                        </table>
+                    </div>
+                    <div th:unless="${isFriend}">
+                        <form th:unless="${isMyProfile}" th:action="@{'/profile/' + ${user.profilename} + '/addfriend'}" method="POST" class="mt-2">
+                            <button type="submit" class="btn btn-dark">Add as a friend</button>
+                        </form>
+                    </div>
                 </div>
-            </div>            
-            
+            </div>
+        </div>     
+        
+        <div class="container">
             <!-- postaus --> 
             <section>
-                <div class="row mt-4">
-                    <h3 class="display-4">Posts</h3>
-                </div>           
+                <h3 class="display-4">Posts</h3>
+                          
                 <form th:if="${isFriend} or ${isMyProfile}" class="mt-2" th:action="@{'/profile/' + ${user.profilename}}" method="POST">
                     <div class="form-group row">
                         <input type="text" name="postcontent" class="form-control col-11" placeholder="Make your friend's day delightful and post something friendly"/>
