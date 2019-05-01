@@ -27,12 +27,12 @@
                     </div>
                 </div>
                 
-                <div class="mb-4 jumbotron">
+                <div class="mb-4 jumbotron" style="background-image: url(https://www.onlygfx.com/wp-content/uploads/2018/10/4-heart-confetti-background-2.png); background-size: cover;">
                     <h3 class="display-4">Friends</h3>
                     <div class="row mt-4 justify-content-center" th:each="friend : ${friends}"> 
-                        <h6 th:text="${friend.realname} + ' aka ' + ${friend.profilename}" class="lead align-self-end mr-2">Kaveri</h6>
+                        <h6 th:text="${friend.realname} + ' aka ' + ${friend.profilename}" class="lead align-self-end mr-2" style="background-color: #E9ECEF; line-height:1; box-shadow: 5px 0 0px 0px #E9ECEF, -5px 0 0px 0px #E9ECEF;">Kaveri</h6>
                         <form th:action="@{'/profile/' + ${friend.profilename}}" method="GET" class="mt-2">
-                            <button type="submit" class="btn btn-dark">Show profile</button>
+                            <button type="submit" class="btn btn-dark ml-2">Show profile</button>
                         </form>
                     </div>
                     <div th:if="${friends.empty}" class="lead">
