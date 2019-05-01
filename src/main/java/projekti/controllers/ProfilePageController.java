@@ -148,7 +148,7 @@ public class ProfilePageController {
     public String showFriendsAndRequests(Model model) {
         model.addAttribute("friends", userSer.getAllFriends());
         model.addAttribute("friendrequests", userSer.getAllFriendRequests());
-        model.addAttribute("allUsers", userSer.listAllUsers());
+        model.addAttribute("allUsers", userSer.allUsersNotYetFriends());
         return "friends";
     }
     
