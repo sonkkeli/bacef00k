@@ -74,7 +74,7 @@ public class UserService {
         if( (file.getContentType().equals("image/jpeg") || 
                 file.getContentType().equals("image/jpg") || 
                 file.getContentType().equals("image/png") ) && 
-                file.getSize() < 1048576 && 
+                file.getSize() < 10000000 && 
                 getPhotos(userRepo.findByProfilename(profilename)).size() <= 10){
             
             Photo p = new Photo();
