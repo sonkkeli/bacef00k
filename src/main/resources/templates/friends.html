@@ -10,13 +10,12 @@
     <body>
         <nav th:replace="fragments/layout :: navbar"></nav>
         
-        <div class="container mt-4">
-            
-            <div class="text-center">
-                <div th:if="${!friendrequests.empty}">
+        <div>            
+            <div class="text-center mb-4">
+                <div th:if="${!friendrequests.empty}" class="mb-4">
                     <h3 class="mt-4 display-4">Pending friend requests</h3>
                     <div class="row  mt-4 justify-content-center" th:each="friendrequest : ${friendrequests}"> 
-                        <div th:text="${friendrequest.sender.realname} + ' ' + ${friendrequest.timeSent}" class="font-weight-light">Kaveripyynnön lähettäjä</div>
+                        <div th:text="${friendrequest.sender.realname} + ' ' + ${friendrequest.timeSent}" class="lead">Kaveripyynnön lähettäjä</div>
                         <div class="input-group justify-content-center">
                             <form th:action="@{'/friends/accept/' + ${friendrequest.sender.profilename}}" method="POST">
                                 <button type="submit" class="mr-2 btn btn-success">Accept</button>
@@ -28,20 +27,23 @@
                     </div>
                 </div>
                 
-                <div>
-                    <h3 class="mt-4 display-4">Friends</h3>
+                <div class="mb-4 jumbotron">
+                    <h3 class="display-4">Friends</h3>
                     <div class="row mt-4 justify-content-center" th:each="friend : ${friends}"> 
-                        <h6 th:text="${friend.realname} + ' aka ' + ${friend.profilename}" class="font-weight-light align-self-end mr-2">Kaveri</h6>
+                        <h6 th:text="${friend.realname} + ' aka ' + ${friend.profilename}" class="lead align-self-end mr-2">Kaveri</h6>
                         <form th:action="@{'/profile/' + ${friend.profilename}}" method="GET" class="mt-2">
                             <button type="submit" class="btn btn-dark">Show profile</button>
                         </form>
                     </div>
+                    <div th:if="${friends.empty}" class="lead">
+                        You don't seem to have any friends yet, go and make some!
+                    </div>
                 </div>
                 
-                <div>
+                <div >
                     <h3 class="mt-4 display-4">Possible future friends</h3>
                     
-                    <div th:if="${!allUsers.empty}">            
+                    <div th:if="${!allUsers.empty}" class="container">            
                         <form  th:action="@{/finder}" method="POST">
                             <div class="form-group row">
                                 <input type="text" name="keyword" class="form-control col-10" placeholder="Lacking friendliness? Feel free to surf for more"/>
@@ -51,7 +53,7 @@
                     </div>
                     
                     <div th:each="res : ${allUsers}" class="row mt-4 justify-content-center">
-                        <span th:text="${res.realname}" class="font-weight-light align-self-center mr-2">Nimi</span>
+                        <span th:text="${res.realname}" class="lead align-self-center mr-2">Nimi</span>
                         <form th:action="@{'/profile/' + ${res.profilename}}" method="GET" class="mt-2">
                             <button type="submit" class="btn btn-dark">Show profile</button>
                         </form>
