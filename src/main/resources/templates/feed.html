@@ -7,14 +7,13 @@
     </head>
     <body>
         <nav th:replace="fragments/layout :: navbar"></nav>
-
-            <!-- postaus --> 
-            <section class='container'>
-                <div class="mt-4">
-                    <p class="mt-4 text-center display-4">Posts of you and your dear friends</p>
-                    <p class="lead text-center ">Go to your friends page to interact!</p>
-                </div>           
-                
+        
+        <div >
+            <div class="jumbotron" style="background-image: url(https://i.imgur.com/LmapHcT.png); background-size: cover;">
+                <p class="text-center display-4" >Posts of you and your dear friends</p>
+                <p class="lead text-center" ><span style="background-color: #E9ECEF; line-height:1; box-shadow: 5px 0 0px 0px #E9ECEF, -5px 0 0px 0px #E9ECEF;">Go to your friends page to interact!</span></p>
+            </div>           
+            <div class='container'>    
                 <!-- postausten näyttäminen -->
                 <div th:each="post : ${posts}" class="jumbotron shadow p-3 mb-3 bg-white rounded"> 
                     <div class="jumbotron shadow-none p-3 mb-3 bg-light rounded">
@@ -22,9 +21,9 @@
                         <span th:text="'@ ' + ${post.postTime}" class="font-weight-light">Aika</span>
                         
                         <p th:text="${post.content}" style="font:Helvetica Light; font-size:25px;">Sisältö</p>
-                        <!-- tykkäyksen lisääminen -->
+                        <!-- tykkäyksen näyttäminen -->
                         <div class="row ml-2">      
-                            <img width="35px" height="35px" src="https://images.vexels.com/media/users/3/144097/isolated/preview/3dedcd235214cdde6b4e171fdbf66c9d-heart-icon-by-vexels.png" alt="likebutton"/>
+                            
                             <span class="ml-2 lead align-self-end" th:text="${post.likers.size()} + ' likes'">Likes</span>
                         </div>
                     </div>                    
@@ -36,6 +35,8 @@
                         <button type="submit" class="btn btn-dark">1-2-3 feeling social!</button>
                     </form> 
                 </div>
-            </section>
+            </div>
+        </div>
+        
     </body>
 </html>
