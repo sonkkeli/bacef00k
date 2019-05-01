@@ -4,7 +4,7 @@
     <head th:replace="fragments/layout :: head" lang="en">
         <link rel="stylesheet" href="style.css" type="text/css"/>
         <meta charset="UTF-8" />
-        <title>Naamakirja</title>
+        <title>bacef00k</title>
     </head>
     
     <body>
@@ -12,34 +12,35 @@
         
         <div>            
             <div class="text-center mb-4">
-                <div th:if="${!friendrequests.empty}" class="mb-4">
-                    <h3 class="mt-4 display-4">Pending friend requests</h3>
-                    <div class="row  mt-4 justify-content-center" th:each="friendrequest : ${friendrequests}"> 
-                        <div th:text="${friendrequest.sender.realname} + ' ' + ${friendrequest.timeSent}" class="lead">Kaveripyynnön lähettäjä</div>
-                        <div class="input-group justify-content-center">
-                            <form th:action="@{'/friends/accept/' + ${friendrequest.sender.profilename}}" method="POST">
-                                <button type="submit" class="mr-2 btn btn-success">Accept</button>
+                <div class="mb-4 jumbotron" style="background-image: url(https://i.imgur.com/LmapHcT.png); background-size: cover;">
+                    <div th:if="${!friendrequests.empty}" class="mb-4">
+                        <h3 class="mt-4 display-4">Pending friend requests</h3>
+                        <div class="row  mt-4 justify-content-center" th:each="friendrequest : ${friendrequests}"> 
+                            <div th:text="${friendrequest.sender.realname} + ' ' + ${friendrequest.timeSent}" class="lead mb-2" style="background-color: #E9ECEF; line-height:1; box-shadow: 5px 0 0px 0px #E9ECEF, -5px 0 0px 0px #E9ECEF;">Kaveripyynnön lähettäjä</div>
+                            <div class="input-group justify-content-center">
+                                <form th:action="@{'/friends/accept/' + ${friendrequest.sender.profilename}}" method="POST">
+                                    <button type="submit" class="mr-2 btn btn-success">Accept</button>
+                                </form>
+                                <form th:action="@{'/friends/ignore/' + ${friendrequest.sender.profilename}}" method="POST">
+                                    <button type="submit" class="btn btn-danger">Ignore</button>
+                                </form>
+                            </div>                
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="display-4">Friends</h3>
+                        <div class="row mt-4 justify-content-center" th:each="friend : ${friends}"> 
+                            <h6 th:text="${friend.realname} + ' ~aka~ ' + ${friend.profilename}" class="lead align-self-end mr-2" style="background-color: #E9ECEF; line-height:1; box-shadow: 5px 0 0px 0px #E9ECEF, -5px 0 0px 0px #E9ECEF;">Kaveri</h6>
+                            <form th:action="@{'/profile/' + ${friend.profilename}}" method="GET" class="mt-2">
+                                <button type="submit" class="btn btn-dark ml-2">Show profile</button>
                             </form>
-                            <form th:action="@{'/friends/ignore/' + ${friendrequest.sender.profilename}}" method="POST">
-                                <button type="submit" class="btn btn-danger">Ignore</button>
-                            </form>
-                        </div>                
+                        </div>
+                        <div th:if="${friends.empty}" class="lead" >
+                            <span style="background-color: #E9ECEF; line-height:1; box-shadow: 5px 0 0px 0px #E9ECEF, -5px 0 0px 0px #E9ECEF;">You don't seem to have any friends yet, go and make some!</span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="mb-4 jumbotron" style="background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c2319d31-56ec-4f80-b9a7-58156da9925a/dd5x90q-b9311edb-615d-45ef-840e-a81efa456980.png/v1/fill/w_1920,h_924,strp/heartbg_greenish_by_soliquid_dd5x90q-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTI0IiwicGF0aCI6IlwvZlwvYzIzMTlkMzEtNTZlYy00ZjgwLWI5YTctNTgxNTZkYTk5MjVhXC9kZDV4OTBxLWI5MzExZWRiLTYxNWQtNDVlZi04NDBlLWE4MWVmYTQ1Njk4MC5wbmciLCJ3aWR0aCI6Ijw9MTkyMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.PIJHOi_DbosZDJE6undXNv5fR-L0vCwSb-bDbgHWQ4U); background-size: cover;">
-                    <h3 class="display-4">Friends</h3>
-                    <div class="row mt-4 justify-content-center" th:each="friend : ${friends}"> 
-                        <h6 th:text="${friend.realname} + ' ~aka~ ' + ${friend.profilename}" class="lead align-self-end mr-2" style="background-color: #E9ECEF; line-height:1; box-shadow: 5px 0 0px 0px #E9ECEF, -5px 0 0px 0px #E9ECEF;">Kaveri</h6>
-                        <form th:action="@{'/profile/' + ${friend.profilename}}" method="GET" class="mt-2">
-                            <button type="submit" class="btn btn-dark ml-2">Show profile</button>
-                        </form>
-                    </div>
-                    <div th:if="${friends.empty}" class="lead">
-                        You don't seem to have any friends yet, go and make some!
-                    </div>
-                </div>
-                
                 <div >
                     <h3 class="mt-4 display-4">Possible future friends</h3>
                     
