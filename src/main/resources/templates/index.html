@@ -9,26 +9,28 @@
     <body>
         <nav th:replace="fragments/layout :: navbar"></nav>
         
-        <div th:unless="@{!isLoggedIn}" class="container mt-4">
+        <div th:if="${isLoggedIn}" class="container mt-2 mb-4">
             <img style="position:relative;width:100%;" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c2319d31-56ec-4f80-b9a7-58156da9925a/dd5nvlw-1d622509-75d8-4727-ba2d-b63717058834.png/v1/fill/w_1920,h_908,strp/welcome_bacef00k3_by_soliquid_dd5nvlw-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTA4IiwicGF0aCI6IlwvZlwvYzIzMTlkMzEtNTZlYy00ZjgwLWI5YTctNTgxNTZkYTk5MjVhXC9kZDVudmx3LTFkNjIyNTA5LTc1ZDgtNDcyNy1iYTJkLWI2MzcxNzA1ODgzNC5wbmciLCJ3aWR0aCI6Ijw9MTkyMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.uknJe6skN8XpsG_HUhSaKbMERmbI-N8CvvrZF_GTNMI" alt="welcome" />
             <p class="mt-4 text-center display-4">Let's head to your <a href="/profile" style="color: #78a0a3;">profile</a> and start connecting!</p>
         </div>  
-        
+        <div th:if="${! isLoggedIn}" class="container mt-2 mb-4">
+            <img style="position:relative;width:100%;" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c2319d31-56ec-4f80-b9a7-58156da9925a/dd5x38r-c9cfccac-321e-4eb4-9a38-6b0392765142.png/v1/fill/w_1920,h_908,strp/welcome_bacef00k_notloggedin_by_soliquid_dd5x38r-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTA4IiwicGF0aCI6IlwvZlwvYzIzMTlkMzEtNTZlYy00ZjgwLWI5YTctNTgxNTZkYTk5MjVhXC9kZDV4MzhyLWM5Y2ZjY2FjLTMyMWUtNGViNC05YTM4LTZiMDM5Mjc2NTE0Mi5wbmciLCJ3aWR0aCI6Ijw9MTkyMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.IE7O4f68_K2TzmBtnzV67-kZPKhfPBBfx9RuegtBFp0" alt="bacef00k logo" />
+        </div>
         
         <div th:if="${! isLoggedIn}">
             <div class="jumbotron text-center">
-                <h1>Hey you, let's get you started! </h1>
+                <h1 class="display-4">Hey you, let's get you started! </h1>
 
                 <div class="row justify-content-center">
                     <form th:action="@{/login}" method="GET">
-                        <span>Already a member? </span>
-                        <button id="signinbutton" type="submit" class="btn btn-dark">Sign in!</button>
+                        <span class="font-weight-light">Already a member? </span>
+                        <button id="signinbutton" type="submit" class="btn btn-dark ml-2">Sign in!</button>
                     </form> 
                 </div>
             </div>
 
             <section class="container col-6">
-                <h2 class="text-center">Let's sign you up!</h2>
+                <h2 class="text-center display-4">Let's sign you up!</h2>
                 <form action="#" th:action="@{/signup}" th:object="${user}" method="POST">
 
                     <div class="form-group">
@@ -60,7 +62,7 @@
                         <section th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Virheviesti</section>
                     </div>
 
-                    <button type="submit" class="btn btn-dark">Sign up!</button>
+                    <button type="submit" class="btn btn-dark mb-4">Sign up!</button>
                 </form>
 
             </section>    
