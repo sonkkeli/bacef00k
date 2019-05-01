@@ -51,6 +51,20 @@ public class UserService {
         return allUsers;
     }
     
+    // ------ FILTERING FOR LISTING ALL NOT YET YOUR FRIENDS ------ // 
+    public List<User> allUsersNotYetFriends(){
+        List<User> usersNotMyFriends = new ArrayList<>();
+        for (User u : listAllUsers()){
+            if ((! getAllFriends().contains(u)) && 
+                    (!u.equals(loggedInUser()))){
+                
+                usersNotMyFriends.add(u);
+                System.out.println(u);
+            }
+        }        
+        return usersNotMyFriends;
+    }
+    
     // ------ FILTERING FOR SEARCHING FRIENDS ------ // 
     public List<User> notYetFriendsMatchingKeyword(String keyword){
         List<User> usersNotMyFriends = new ArrayList<>();
