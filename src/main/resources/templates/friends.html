@@ -22,7 +22,7 @@
 
             <div class="text-center">
                 <div th:if="${!friendrequests.empty}">
-                    <h3>Pending friend requests:</h3>
+                    <h3 class="mt-4 display-4">Pending friend requests</h3>
                     <div class="row  mt-4 justify-content-center" th:each="friendrequest : ${friendrequests}"> 
                         <div th:text="${friendrequest.sender.realname} + ' ' + ${friendrequest.timeSent}" class="font-weight-light">Kaveripyynnön lähettäjä</div>
                         <div class="input-group justify-content-center">
@@ -37,7 +37,7 @@
                 </div>
                 
                 <div>
-                    <h3 class="mt-4">Friends:</h3>
+                    <h3 class="mt-4 display-4">Friends</h3>
                     <div class="row mt-4 justify-content-center" th:each="friend : ${friends}"> 
                         <h6 th:text="${friend.realname} + ' aka ' + ${friend.profilename}" class="font-weight-light align-self-end mr-2">Kaveri</h6>
                         <form th:action="@{'/profile/' + ${friend.profilename}}" method="GET" class="mt-2">
@@ -47,9 +47,9 @@
                 </div>
                 
                 <div>
-                    <h3 class="mt-4">All users</h3>
+                    <h3 class="mt-4 display-4">Possible future friends</h3>
                     <div th:each="res : ${allUsers}" class="row mt-4 justify-content-center">
-                        <span th:text="${res.realname}" class="align-self-center mr-2">Nimi</span>
+                        <span th:text="${res.realname}" class="font-weight-light align-self-center mr-2">Nimi</span>
                         <form th:action="@{'/profile/' + ${res.profilename}}" method="GET" class="mt-2">
                             <button type="submit" class="btn btn-dark">Show profile</button>
                         </form>
