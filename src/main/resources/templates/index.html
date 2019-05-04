@@ -27,10 +27,10 @@
         </div>
         
         <!-- sign up -->
-        <div th:if="${! isLoggedIn}" class="container col-6">
+        <div th:if="${! isLoggedIn}" >
             <h2 class="text-center display-4">Not yet a member?</h2>
             <p class="font-weight-light text-center">Let's create an account for you!</p>
-            <form action="#" th:action="@{/signup}" th:object="${user}" method="POST">
+            <form class="container col-6" action="#" th:action="@{/signup}" th:object="${user}" method="POST">
 
                 <div class="form-group">
                     <label for="username">Username</label>
