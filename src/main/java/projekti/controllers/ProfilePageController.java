@@ -42,9 +42,6 @@ public class ProfilePageController {
     private PostService postSer;
     
     @Autowired
-    private ReactionsService reactSer;
-    
-    @Autowired
     PasswordEncoder passwordEncoder;
     
     /*
@@ -73,9 +70,11 @@ public class ProfilePageController {
         }
         model.addAttribute("isLoggedIn", true);
         model.addAttribute("isFriend", isFriend);
+        model.addAttribute("friendrequestCanBeSent", userSer.friendrequestCanBeSent(u));
         model.addAttribute("user", u);
         model.addAttribute("posts", postSer.getPostsByProfile(u));
         model.addAttribute("photos", userSer.getPhotos(u));
+        System.out.println(userSer.friendrequestCanBeSent(u));
         return "profile";
     }    
     
@@ -156,7 +155,7 @@ public class ProfilePageController {
     
     // ------ FIND FRIENDS ------ // 
     @PostMapping("/finder")
-    public String findFriends(@RequestParam String keyword, Model model){        
+    public String findFriends(@RequestParam String keyword, Model model){
         model.addAttribute("friends", userSer.getAllFriends());
         model.addAttribute("friendrequests", userSer.getAllFriendRequests());
         model.addAttribute("allUsers", userSer.notYetFriendsMatchingKeyword(keyword));
