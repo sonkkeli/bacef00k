@@ -48,6 +48,7 @@ public class DefaultController {
     @GetMapping("*")
     public String landingPage(Model model) {
         boolean isLoggedIn = false;
+        System.out.println("kirjautuneena " + userSer.loggedInUser().getUsername());
         if (userSer.loggedInUser() != null){
             isLoggedIn = true;
         }

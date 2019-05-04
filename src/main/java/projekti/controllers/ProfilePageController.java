@@ -74,7 +74,6 @@ public class ProfilePageController {
         model.addAttribute("user", u);
         model.addAttribute("posts", postSer.getPostsByProfile(u));
         model.addAttribute("photos", userSer.getPhotos(u));
-        System.out.println(userSer.friendrequestCanBeSent(u));
         return "profile";
     }    
     
@@ -108,7 +107,7 @@ public class ProfilePageController {
         String pw = user.getPassword();
         user.setPassword(passwordEncoder.encode(pw));
         userRepo.save(user);
-        System.out.println(user + " lisätty");
+        System.out.println("uusi käyttäjä lisätty");
         model.addAttribute(user);
         model.addAttribute("isLoggedIn", false);        
         model.addAttribute("uniqueUsername", true);
