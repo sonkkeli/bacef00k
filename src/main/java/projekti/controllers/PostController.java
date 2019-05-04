@@ -32,6 +32,7 @@ public class PostController {
     // ------ SHOWING THE FEED ------ // 
     @GetMapping("/feed")
     public String showFeed(Model model) {
+        model.addAttribute("isLoggedIn", true);
         model.addAttribute("posts", postSer.getAllPostsOfMeAndMyFriends());
         return "feed";
     }
