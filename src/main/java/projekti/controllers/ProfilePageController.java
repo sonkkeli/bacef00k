@@ -71,6 +71,7 @@ public class ProfilePageController {
         if (userSer.hasProfilePicture(u)){
             model.addAttribute("profilepicid", userSer.findIdOfCurrentProfilePicture(u));
         }
+        model.addAttribute("isLoggedIn", true);
         model.addAttribute("isFriend", isFriend);
         model.addAttribute("user", u);
         model.addAttribute("posts", postSer.getPostsByProfile(u));
@@ -155,6 +156,7 @@ public class ProfilePageController {
     // ------ FIND FRIENDS ------ // 
     @PostMapping("/finder")
     public String findFriends(@RequestParam String keyword, Model model){
+        model.addAttribute("isLoggedIn", true);
         model.addAttribute("friends", userSer.getAllFriends());
         model.addAttribute("friendrequests", userSer.getAllFriendRequests());
         model.addAttribute("allUsers", userSer.notYetFriendsMatchingKeyword(keyword));
