@@ -39,7 +39,12 @@ public class PostController {
     // ------ POSTING ------ // 
     @PostMapping("/profile/{profilename}")
     public String postOnTheWall(@RequestParam String postcontent, @PathVariable String profilename){
-        postSer.handlePosting(postcontent, profilename);
+        System.out.println(postcontent.length());
+        if (postcontent.length() >= 255){
+            System.out.println("Somebody tried to create too long post lol");
+        } else {
+            postSer.handlePosting(postcontent, profilename);
+        }        
         return "redirect:/profile/" + profilename;
     }
     
@@ -48,7 +53,11 @@ public class PostController {
     public String commentOnPost(@RequestParam String postcommentcontent, 
             @PathVariable Long id, @PathVariable String profilename){
         
-        reactSer.handlePostCommenting(postcommentcontent, profilename, id);
+        if (postcommentcontent.length() >= 255){
+            System.out.println("Somebody tried to create too long comment lol");
+        } else {
+            reactSer.handlePostCommenting(postcommentcontent, profilename, id);
+        }
         return "redirect:/profile/" + profilename;
     }
     
@@ -65,7 +74,11 @@ public class PostController {
     public String commentOnPhoto(@RequestParam String photocommentcontent, 
             @PathVariable Long id, @PathVariable String profilename){
         
-        reactSer.handlePhotoCommenting(photocommentcontent, profilename, id);
+        if (photocommentcontent.length() >= 255){
+            System.out.println("Somebody tried to create too long comment lol");
+        } else {
+            reactSer.handlePhotoCommenting(photocommentcontent, profilename, id);
+        }
         return "redirect:/profile/" + profilename;
     }
     
