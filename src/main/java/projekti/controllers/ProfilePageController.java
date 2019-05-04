@@ -147,6 +147,7 @@ public class ProfilePageController {
     // ------ FRIENDS & REQUESTS ------ // 
     @GetMapping("/friends")
     public String showFriendsAndRequests(Model model) {
+        model.addAttribute("isLoggedIn", true);
         model.addAttribute("friends", userSer.getAllFriends());
         model.addAttribute("friendrequests", userSer.getAllFriendRequests());
         model.addAttribute("allUsers", userSer.allUsersNotYetFriends());
@@ -155,8 +156,7 @@ public class ProfilePageController {
     
     // ------ FIND FRIENDS ------ // 
     @PostMapping("/finder")
-    public String findFriends(@RequestParam String keyword, Model model){
-        model.addAttribute("isLoggedIn", true);
+    public String findFriends(@RequestParam String keyword, Model model){        
         model.addAttribute("friends", userSer.getAllFriends());
         model.addAttribute("friendrequests", userSer.getAllFriendRequests());
         model.addAttribute("allUsers", userSer.notYetFriendsMatchingKeyword(keyword));
