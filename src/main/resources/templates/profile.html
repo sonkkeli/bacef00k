@@ -25,11 +25,12 @@
                         </table>
                     </div>                    
                 </div>
-                <div th:unless="${isFriend}">
-                    <form th:unless="${isMyProfile}" th:action="@{'/profile/' + ${user.profilename} + '/addfriend'}" method="POST" class="mt-2 ml-4">
+                <div th:unless="${friendrequestCanBeSent} or ${isFriend} or ${isMyProfile}">
+                    <form th:action="@{'/profile/' + ${user.profilename} + '/addfriend'}" method="POST" class="mt-2 ml-4">
                         <button type="submit" class="btn btn-dark">Add as a friend</button>
                     </form>
                 </div>
+                <div th:if="${friendrequestCanBeSent}" class="lead ml-2">Friend request pending...</div>
             </div>
         </div>     
         
