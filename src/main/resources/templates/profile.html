@@ -48,7 +48,7 @@
                 <div th:each="post : ${posts}" class="jumbotron shadow p-3 mb-5 bg-white rounded"> 
                     <div class="jumbotron shadow-none p-3 mb-3 bg-light rounded">
                         <span th:text="${post.whoPosted.username} + ' to ' + ${post.toWhomPosted.username}" class="font-weight-light">Postaaja</span>
-                        <span th:text="'@ ' + ${post.postTime}" class="font-weight-light">Aika</span>
+                        <span th:text="'@ ' + ${post.postTime.toString().substring(0,19)}" class="font-weight-light">Aika</span>
                         <p th:text="${post.content}" style="font:Helvetica Light; font-size:25px;">Sisältö</p>
                         <!-- tykkäyksen lisääminen -->
                         <div th:if="${isFriend} or ${isMyProfile}" class="row">
@@ -60,7 +60,7 @@
                     </div>
                     <!-- kommenttien näyttäminen -->
                     <div th:each="comment : ${post.comments}">
-                        <span class="ml-4 lead" th:text="${comment.commentingTime} + ' - ' + ${comment.whoCommented.username} + ': ' + ${comment.content}"></span>
+                        <span class="ml-4 lead" th:text="${comment.commentingTime.toString().substring(0,19)} + ' - ' + ${comment.whoCommented.username} + ': ' + ${comment.content}"></span>
                     </div>
                     <!-- kommentin lisääminen -->
                     <form th:if="${isFriend} or ${isMyProfile}" class="mt-2" th:action="@{'/profile/' + ${user.profilename} + '/comment/' + ${post.id}}" method="POST">
@@ -101,7 +101,7 @@
                     <div>
                         <!-- kommenttien näyttäminen -->
                         <div th:each="comment : ${photo.comments}">
-                            <span class="ml-4 lead" th:text="${comment.commentingTime} + ' - ' + ${comment.whoCommented.username} + ': ' + ${comment.content}"></span>
+                            <span class="ml-4 lead" th:text="${comment.commentingTime.toString().substring(0,19)} + ' - ' + ${comment.whoCommented.username} + ': ' + ${comment.content}"></span>
                         </div>
                         <!-- kommentin lisääminen -->
                         <form th:if="${isFriend} or ${isMyProfile}" class="mt-2" th:action="@{'/profile/' + ${user.profilename} + '/commentPic/' + ${photo.id}}" method="POST">
