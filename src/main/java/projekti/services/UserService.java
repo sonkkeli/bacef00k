@@ -51,7 +51,6 @@ public class UserService {
         return allUsers;
     }
     
-    // ------ FILTERING FOR LISTING ALL NOT YET YOUR FRIENDS ------ // 
     public List<User> allUsersNotYetFriends(){
         List<User> usersNotMyFriends = new ArrayList<>();
         for (User u : listAllUsers()){
@@ -118,6 +117,25 @@ public class UserService {
         friendship.setSender(loggedInUser());
         friendship.setReceiver(userRepo.findByProfilename(profilename));
         friendRepo.save(friendship);
+    }
+    
+    // ------ FRIEND REQUEST ALREADY SENT ------ //
+    public boolean friendrequestCanBeSent(User u){
+        if (loggedInUser().equals(u)){
+            System.out.println("it's your profile dummy");
+            return false;
+        }
+        if (getAllFriends().contains(u)){
+            System.out.println("you are already friends");
+            return false;
+        }
+        Friendship friendship = friendRepo.findBySenderAndReceiver(loggedInUser(),u);
+        System.out.println(friendship);
+        if (friendship != null){
+            return true;
+        } else {
+            return false;
+        }
     }
     
     // ------ DECLINING FRIEND REQUEST ------ // 
