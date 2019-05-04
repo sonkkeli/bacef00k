@@ -8,9 +8,9 @@
     </head>
     
     <body>
-        <nav th:replace="fragments/layout :: navbar"></nav>
+        <nav th:replace="fragments/layout :: navbar(isLoggedIn=${isLoggedIn})"></nav>
         
-        <div>            
+        <div class="mt-4">            
             <div class="text-center mb-4">
                 <div class="mb-4 jumbotron" style="background-image: url(https://i.imgur.com/LmapHcT.png); background-size: cover;">
                     <div th:if="${!friendrequests.empty}" class="mb-4">

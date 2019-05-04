@@ -7,10 +7,10 @@
     </head>
     
     <body>
-        <nav th:replace="fragments/layout :: navbar"></nav>
+        <nav th:replace="fragments/layout :: navbar(isLoggedIn=${isLoggedIn})"></nav>
         
         <!-- alotuskuva -->
-        <div class="jumbotron" style="background-image: url(https://i.imgur.com/LmapHcT.png); background-size: cover;">
+        <div class="jumbotron mt-4" style="background-image: url(https://i.imgur.com/LmapHcT.png); background-size: cover;">
             <div th:if="${isLoggedIn}" class="container mt-2 mb-4">
                 <img style="position:relative;width:100%;" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c2319d31-56ec-4f80-b9a7-58156da9925a/dd5nvlw-1d622509-75d8-4727-ba2d-b63717058834.png/v1/fill/w_1920,h_908,strp/welcome_bacef00k3_by_soliquid_dd5nvlw-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTA4IiwicGF0aCI6IlwvZlwvYzIzMTlkMzEtNTZlYy00ZjgwLWI5YTctNTgxNTZkYTk5MjVhXC9kZDVudmx3LTFkNjIyNTA5LTc1ZDgtNDcyNy1iYTJkLWI2MzcxNzA1ODgzNC5wbmciLCJ3aWR0aCI6Ijw9MTkyMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.uknJe6skN8XpsG_HUhSaKbMERmbI-N8CvvrZF_GTNMI" alt="welcome" />
                 <p class="mt-4 text-center display-4">Let's head to your <a href="/profile" style="color: #78a0a3;">profile</a> and start connecting!</p>

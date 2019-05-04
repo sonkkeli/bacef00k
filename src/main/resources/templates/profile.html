@@ -5,9 +5,9 @@
         <title>Naamakirja</title>
     </head>
     <body>
-        <nav th:replace="fragments/layout :: navbar"></nav>
+        <nav th:replace="fragments/layout :: navbar(isLoggedIn=${isLoggedIn})"></nav>
         
-        <div class="jumbotron" style="background-image: url(https://i.imgur.com/LmapHcT.png); background-size: cover;">
+        <div class="jumbotron mt-4" style="background-image: url(https://i.imgur.com/LmapHcT.png); background-size: cover;">
             <div class="container shadow p-3 mb-5 bg-white rounded">
                 <div class="row">
                     <div class="ml-4 mt-2 mb-2">
@@ -130,6 +130,6 @@
             </section>
             
         </div>
-        <script th:src="@{/javascript/code.js}" defer></script>
+        <script th:src="@{/javascript/code.js}"></script>
     </body>
 </html>

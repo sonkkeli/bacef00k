@@ -6,9 +6,9 @@
         <title>Naamakirja</title>
     </head>
     <body>
-        <nav th:replace="fragments/layout :: navbar"></nav>
+        <nav th:replace="fragments/layout :: navbar(isLoggedIn=${isLoggedIn})"></nav>
         
-        <div >
+        <div class="mt-4">
             <div class="jumbotron" style="background-image: url(https://i.imgur.com/LmapHcT.png); background-size: cover;">
                 <p class="text-center display-4" >Posts of you and your dear friends</p>
                 <p class="lead text-center" ><span style="background-color: #E9ECEF; line-height:1; box-shadow: 5px 0 0px 0px #E9ECEF, -5px 0 0px 0px #E9ECEF;">Go to your friends page to interact!</span></p>
