@@ -58,7 +58,6 @@ public class UserService {
                     (!u.equals(loggedInUser()))){
                 
                 usersNotMyFriends.add(u);
-                System.out.println(u);
             }
         }        
         return usersNotMyFriends;
@@ -73,7 +72,6 @@ public class UserService {
                     (!u.equals(loggedInUser()))){
                 
                 usersNotMyFriends.add(u);
-                System.out.println(u);
             }
         }        
         return usersNotMyFriends;
@@ -122,15 +120,12 @@ public class UserService {
     // ------ FRIEND REQUEST ALREADY SENT ------ //
     public boolean friendrequestCanBeSent(User u){
         if (loggedInUser().equals(u)){
-            System.out.println("it's your profile dummy");
             return false;
         }
         if (getAllFriends().contains(u)){
-            System.out.println("you are already friends");
             return false;
         }
         Friendship friendship = friendRepo.findBySenderAndReceiver(loggedInUser(),u);
-        System.out.println(friendship);
         if (friendship != null){
             return true;
         } else {
@@ -198,7 +193,6 @@ public class UserService {
                 id = p.getId();
             }
         }
-        System.out.println(id);
         return id;
     }
     
