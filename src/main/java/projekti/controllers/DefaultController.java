@@ -48,11 +48,11 @@ public class DefaultController {
     @GetMapping("*")
     public String landingPage(Model model) {
         boolean isLoggedIn = false;
-        System.out.println("sisällä tänään " + userSer.loggedInUser());
+        // System.out.println("sisällä tänään " + userSer.loggedInUser());
         if (userSer.loggedInUser() != null){
             isLoggedIn = true;
         }
-        System.out.println(isLoggedIn);
+        // System.out.println(isLoggedIn);
         model.addAttribute("isLoggedIn", isLoggedIn);
         model.addAttribute("uniqueUsername", true);
         model.addAttribute("uniqueProfilename", true);
