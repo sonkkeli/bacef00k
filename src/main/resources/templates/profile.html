@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="fragments/layout :: head" lang="en">
         <meta charset="UTF-8" />
-        <title>bacef00k</title>
+        <title>Naamakirja</title>
     </head>
     <body>
         <nav th:replace="fragments/layout :: navbar"></nav>
@@ -40,8 +40,8 @@
                           
                 <form th:if="${isFriend} or ${isMyProfile}" class="mt-2" th:action="@{'/profile/' + ${user.profilename}}" method="POST">
                     <div class="form-group row">
-                        <input type="text" name="postcontent" class="form-control col-11" placeholder="Make your friend's day delightful and post something friendly"/>
-                        <button type="submit" class="btn btn-dark col-1">Post</button>
+                        <input type="text" id="postcontent" name="postcontent" class="form-control col-11" placeholder="Make your friend's day delightful and post something friendly"/>
+                        <button type="submit" onclick="alertTooLongPost()" class="btn btn-dark col-1">Post</button>                                                
                     </div>
                 </form>
                 <!-- postausten näyttäminen -->
@@ -65,8 +65,8 @@
                     <!-- kommentin lisääminen -->
                     <form th:if="${isFriend} or ${isMyProfile}" class="mt-2" th:action="@{'/profile/' + ${user.profilename} + '/comment/' + ${post.id}}" method="POST">
                         <div class="form-group row justify-content-center">
-                            <input type="text" name="postcommentcontent" class="form-control col-9" placeholder="That was so triggering right?"/>
-                            <button type="submit" class="ml-2 btn btn-dark col-2">Comment</button>
+                            <input type="text" name="postcommentcontent" id="postcommentcontent" class="form-control col-9" placeholder="That was so triggering right?"/>
+                            <button type="submit" onClick="alertTooLongPostComment()" class="ml-2 btn btn-dark col-2">Comment</button>
                         </div>
                     </form>
                 </div>
@@ -106,8 +106,8 @@
                         <!-- kommentin lisääminen -->
                         <form th:if="${isFriend} or ${isMyProfile}" class="mt-2" th:action="@{'/profile/' + ${user.profilename} + '/commentPic/' + ${photo.id}}" method="POST">
                             <div class="form-group row justify-content-center">
-                                <input type="text" name="photocommentcontent" class="form-control col-9" placeholder="I look so damn gorgeus, give me compliments."/>
-                                <button type="submit" class="btn btn-dark col-2">Comment</button>
+                                <input type="text" name="photocommentcontent" id="photocommentcontent" class="form-control col-9" placeholder="I look so damn gorgeus, give me compliments."/>
+                                <button type="submit" onClick="alertTooLongPhotoComment()" class="btn btn-dark col-2">Comment</button>
                             </div>
                         </form>
                     </div>
@@ -130,5 +130,6 @@
             </section>
             
         </div>
+        <script th:src="@{/javascript/code.js}" defer></script>
     </body>
 </html>
