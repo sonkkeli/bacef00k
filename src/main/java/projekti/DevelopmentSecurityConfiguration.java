@@ -34,7 +34,7 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
             .antMatchers("/index").permitAll()
             .anyRequest().authenticated().and()
             .formLogin().defaultSuccessUrl("/", true).permitAll().and()
-            .logout().permitAll();
+            .logout().logoutSuccessUrl("/").permitAll();
     }
         
     @Autowired
