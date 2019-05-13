@@ -2,7 +2,8 @@
 https://web-palvelinohjelmointi-19.mooc.fi/    
 Available on heroku: https://bacef00k.herokuapp.com/    
 (for testing you can log in with username=username and password=password)    
-Atm everything else works but liking can be done twice... And you can bypass some of the access controls via postman... On the to-do-list, but not prioritized unfortunately...
+    
+Atm everything else works but liking can sometimes be done twice... And you can bypass some of the access controls via postman (you can post on the wall of sb who you're noot friends with)... On the to-do-list, but not prioritized unfortunately...
 
 Kurssiin Web-palvelinohjelmointi Java kuuluu ohjelmointiprojekti, jossa luodaan kaveri- ja kuvasovellus eli tuttavallisemmin vanhan kansan Facebook. 
 
